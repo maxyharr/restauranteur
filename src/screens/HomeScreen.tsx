@@ -4,17 +4,26 @@ import {
   Text,
   View,
   TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import colors from '../constants/Colors'
 import icons from '../constants/Icons'
 import { SearchResults, SearchResult } from '../components/SearchResults'
 import { Ionicons } from '@expo/vector-icons'
+import { GoogleAutoComplete } from 'react-native-google-autocomplete'
+import { GOOGLE_PLACES_API_KEY } from '../../key'
 
 interface Props {}
 interface State {
   searchTerm: string
   data: SearchResult[]
+  loading: boolean
+  page: number
+  seed: number
+  error: any
+  refreshing: boolean
 }
 
 export default class HomeScreen extends React.Component<Props, State> {
@@ -26,29 +35,44 @@ export default class HomeScreen extends React.Component<Props, State> {
     super(props)
     this.state = {
       searchTerm: '',
-      data: [{name: 'Yolo monkeys barbershop'}]
+      data: [],
+      loading: false,
+      page: 1,
+      seed: 1,
+      error: null,
+      refreshing: false,
     }
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.searchBarContainer}>
-          <Ionicons style={styles.searchIcon} name={icons.search} size={20} color="#000" />
-          <TextInput
-            style={styles.searchBar}
-            onChangeText={(searchTerm) => this.setState({searchTerm})}
-            value={this.state.searchTerm}
-            placeholder="Search for a place or address"
-            placeholderTextColor={colors.placeholder}
-          />
-        </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <GoogleAutoComplete apiKey={GOOGLE_PLACES_API_KEY}>
+            {({handleTextChange, locationResults}) => (
+              <React.Fragment>
+                {console.log(locationResults)}
+                <View style={styles.searchBarContainer}>
+                  <Ionicons style={styles.searchIcon} name={icons.search} size={20} color="#000" />
+                  <TextInput
+                    style={styles.searchBar}
+                    onChangeText={handleTextChange}
+                    placeholder="Search for a place or address"
+                    placeholderTextColor={colors.placeholder}
+                  />
+                </View>
+              </React.Fragment>
+            )}
+          </GoogleAutoComplete>
 
-        <View style={styles.searchResultsContainer}>
-          <SearchResults data={this.state.data}/>
+          <View style={styles.searchResultsContainer}>
+            <SearchResults data={this.state.data}/>
+          </View>
+
+
+          {this._maybeRenderDevelopmentModeWarning()}
         </View>
-        {this._maybeRenderDevelopmentModeWarning()}
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 
