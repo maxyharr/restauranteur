@@ -11,4 +11,7 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
+  searchBarBackground: '#eee',
+  text: '#444',
+  placeholder: '#666'
 };
