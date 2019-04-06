@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Image,
   Platform,
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fbfbfb',
     paddingVertical: 20,
-  },
+  } as any,
   tabBarInfoText: {
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',

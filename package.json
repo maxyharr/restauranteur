@@ -12,14 +12,18 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "@types/expo__vector-icons": "^9.0.1",
     "expo": "^32.0.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-navigation": "^3.0.9"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0",
-    "jest-expo": "^32.0.0"
+    "@types/expo": "^32.0.9",
+    "@types/react": "^16.8.12",
+    "jest-expo": "^32.0.0",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.2"
   },
   "private": true
 }
