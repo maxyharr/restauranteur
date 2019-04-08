@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import Icons from '../constants/Icons';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -16,9 +17,7 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios' ? `ios-search` : 'md-search'
-      }
+      name={Icons.search}
     />
   ),
 };
@@ -32,7 +31,7 @@ LinksStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-list' : 'md-list'}
+      name={Icons.list}
     />
   ),
 };
@@ -46,7 +45,7 @@ SettingsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-star' : 'md-star'}
+      name={Icons.star}
     />
   ),
 };

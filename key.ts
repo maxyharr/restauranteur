@@ -1,1 +1,1 @@
-export const GOOGLE_PLACES_API_KEY = "AIzaSyDEvEaDKarj0tP74ztz6LiaW6fVZM9QcM0"
+export const GOOGLE_PLACES_API_KEY = "AIzaSyDiWFlU1GJzgbga_Fd1UROnGWQDwVphXz0"
